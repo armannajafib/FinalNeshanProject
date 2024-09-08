@@ -11,17 +11,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
-        // اضافه کردن BottomFragment به اکتیویتی
-        val fragmentManager: FragmentManager = supportFragmentManager
-        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-
-        // ایجاد نمونه‌ای از BottomFragment
-        val fragment: Fragment = CardMaterialFragment()
-
-        // اضافه کردن فرگمنت به FrameLayout
-        fragmentTransaction.add(R.id.fragment_container, fragment)
-        fragmentTransaction.commit()
+//
+//        val fragmentManager: FragmentManager = supportFragmentManager
+//        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+//        val fragment: Fragment = CardMaterialFragment()
+//
+//        fragmentTransaction.add(R.id.fragment_container, fragment)
+//        fragmentTransaction.commit()
 
 
     }
