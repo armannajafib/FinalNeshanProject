@@ -48,6 +48,8 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.karumi:dexter:6.2.3")
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

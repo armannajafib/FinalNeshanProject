@@ -1,24 +1,33 @@
 package com.example.neshanfinalproject
-
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//
-//        val fragmentManager: FragmentManager = supportFragmentManager
-//        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-//        val fragment: Fragment = CardMaterialFragment()
-//
-//        fragmentTransaction.add(R.id.fragment_container, fragment)
-//        fragmentTransaction.commit()
 
+        val originButton = findViewById<Button>(R.id.origin)
+        val destinationButton = findViewById<Button>(R.id.destination)
 
+        val searchFragment = SearchFragment()
+        val searchFragmentLayout = R.id.search_fragment
+        originButton.setOnClickListener {
+            supportFragmentManager.beginTransaction().apply {
+                replace(searchFragmentLayout,searchFragment)
+                addToBackStack(null)
+                commit()
+            }
+        }
+        destinationButton.setOnClickListener {
+            supportFragmentManager.beginTransaction().apply {
+                replace(searchFragmentLayout,searchFragment)
+                addToBackStack(null)
+                commit()
+            }
+        }
+        var userLocationActivity =UserLocationActivity()
     }
 }
