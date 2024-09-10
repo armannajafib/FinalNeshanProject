@@ -10,7 +10,21 @@
 
 
 
-    <Button
+
+     <com.google.android.material.floatingactionbutton.FloatingActionButton
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginEnd="8dp"
+         android:layout_marginBottom="8dp"
+         android:onClick="focusOnUserLocation"
+         app:fabSize="normal"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintBottom_toTopOf="@id/origin"
+         app:srcCompat="@drawable/ic_my_location" />
+
+
+     <Button
         android:id="@+id/origin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
