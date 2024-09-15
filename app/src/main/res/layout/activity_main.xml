@@ -24,22 +24,27 @@
          app:srcCompat="@drawable/ic_my_location" />
 
 
-     <Button
+     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/origin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@id/destination"
         android:text="origin"
         android:textAlignment="center"
+         android:background="@color/black"
+         android:textColor="@color/white"
+         android:layout_marginBottom="5dp"
         />
 
-    <Button
+     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/destination"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="destination"
         android:textAlignment="center"
+         android:background="@color/black"
+         android:textColor="@color/white"
         />
 
     <FrameLayout

@@ -12,7 +12,7 @@ import android.os.Looper
 import android.provider.Settings
 import android.util.Log
 import android.view.View
-import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.carto.styles.MarkerStyleBuilder
@@ -34,7 +34,7 @@ import java.text.DateFormat
 import java.util.*
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),MapInterface {
 
     private val TAG: String = MainActivity::class.java.name
 
@@ -65,25 +65,26 @@ class MainActivity : AppCompatActivity() {
     // boolean flag to toggle the ui
     private var mRequestingLocationUpdates: Boolean? = null
     private var marker: Marker? = null
+    private val markers = ArrayList<Marker>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
 
-        val originButton = findViewById<Button>(R.id.origin)
-        val destinationButton = findViewById<Button>(R.id.destination)
+        val originEdittext = findViewById<EditText>(R.id.origin)
+        val destinationEdittext = findViewById<EditText>(R.id.destination)
 
         val searchFragment = SearchFragment()
         val searchFragmentLayout = R.id.search_fragment
-        originButton.setOnClickListener {
+        originEdittext.setOnClickListener {
             supportFragmentManager.beginTransaction().apply {
                 replace(searchFragmentLayout,searchFragment)
                 addToBackStack(null)
                 commit()
             }
         }
-        destinationButton.setOnClickListener {
+        destinationEdittext.setOnClickListener {
             supportFragmentManager.beginTransaction().apply {
                 replace(searchFragmentLayout,searchFragment)
                 addToBackStack(null)
@@ -140,6 +141,11 @@ class MainActivity : AppCompatActivity() {
                 // location is received
                 userLocation = locationResult.lastLocation
                 lastUpdateTime = DateFormat.getTimeInstance().format(Date())
+
+                val latLng = LatLng(userLocation!!.latitude, userLocation!!.longitude)
+
+                sendLocationToFragment(latLng)
+
                 onLocationChange()
             }
         }
@@ -286,7 +292,17 @@ class MainActivity : AppCompatActivity() {
         // Adding user marker to map!
         map.addMarker(marker)
     }
+private fun sendLocationToFragment(latLng: LatLng) {
+    val fragment = supportFragmentManager.findFragmentById(R.id.search_fragment) as? SearchFragment
+    fragment?.let {
+        val bundle = Bundle()
+        bundle.putDouble("latitude", latLng.latitude)
+        bundle.putDouble("longitude", latLng.longitude)
+        it.arguments = bundle
 
+        it.onLocationUpdated(latLng)
+    }
+}
     fun focusOnUserLocation(view: View?) {
         if (userLocation != null) {
             map.moveCamera(
@@ -314,5 +330,12 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+    override fun getMapView(): MapView {
+        return map
+    }
+    override fun clearMarkers() {
+        map.clearMarkers()
+        markers.clear()
     }
 }
