@@ -12,6 +12,7 @@ import android.os.Looper
 import android.provider.Settings
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -72,8 +73,8 @@ class MainActivity : AppCompatActivity(),MapInterface {
         setContentView(R.layout.activity_main)
 
 
-        val originEdittext = findViewById<EditText>(R.id.origin)
-        val destinationEdittext = findViewById<EditText>(R.id.destination)
+        val originEdittext = findViewById<Button>(R.id.origin)
+        val destinationEdittext = findViewById<Button>(R.id.destination)
 
         val searchFragment = SearchFragment()
         val searchFragmentLayout = R.id.search_fragment
@@ -339,3 +340,42 @@ private fun sendLocationToFragment(latLng: LatLng) {
         markers.clear()
     }
 }
+
+
+
+//------------------------------------------------------------------------
+
+
+//
+//
+//package com.example.app.presentation.main
+//
+//import android.os.Bundle
+//import androidx.activity.viewModels
+//import androidx.appcompat.app.AppCompatActivity
+//import androidx.lifecycle.lifecycleScope
+////import com.example.app.R
+//import com.example.neshanfinalproject.R
+//import kotlinx.coroutines.flow.collect
+//import kotlinx.coroutines.launch
+//
+//class MainActivity : AppCompatActivity() {
+//
+//    private val viewModel: MainViewModel by viewModels()
+//
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_main)
+//
+//        lifecycleScope.launch {
+//            viewModel.location.collect { location ->
+//                // موقعیت فعلی را نمایش بده
+//                if (location != null) {
+//                    // اینجا کد نمایش موقعیت در نقشه یا UI اضافه می‌شود
+//                }
+//            }
+//        }
+//
+//        viewModel.fetchCurrentLocation()
+//    }
+//}

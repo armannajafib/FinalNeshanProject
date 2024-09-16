@@ -191,3 +191,57 @@ if(arguments == null){
       addMarker(LatLng!!, 30f)
     }
 }
+
+//
+//package com.example.app.presentation.search
+//
+//import android.os.Bundle
+//import android.view.LayoutInflater
+//import android.view.View
+//import android.view.ViewGroup
+//import androidx.fragment.app.Fragment
+//import androidx.fragment.app.viewModels
+//import androidx.lifecycle.lifecycleScope
+//import kotlinx.coroutines.launch
+//import com.example.app.databinding.FragmentSearchBinding
+//import kotlinx.coroutines.flow.collect
+//import kotlinx.coroutines.launch
+//
+//class SearchFragment : Fragment() {
+//
+//    private var _binding: FragmentSearchBinding? = null
+//    private val binding get() = _binding!!
+//
+//    private val viewModel: SearchViewModel by viewModels()
+//
+//    override fun onCreateView(
+//        inflater: LayoutInflater, container: ViewGroup?,
+//        savedInstanceState: Bundle?
+//    ): View {
+//        _binding = FragmentSearchBinding.inflate(inflater, container, false)
+//        return binding.root
+//    }
+//
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//
+//        binding.searchButton.setOnClickListener {
+//            val query = binding.searchEditText.text.toString()
+//            viewModel.searchPlaces(query, 35.6892, 51.3890)
+//        }
+//
+//        lifecycleScope.launch {
+//            viewModel.searchResults.collect { results ->
+//                // نتایج جستجو را نمایش بده
+//                if (results.isNotEmpty()) {
+//                    // اینجا کد نمایش نتایج جستجو در لیست یا نقشه اضافه می‌شود
+//                }
+//            }
+//        }
+//    }
+//
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        _binding = null
+//    }
+//}
